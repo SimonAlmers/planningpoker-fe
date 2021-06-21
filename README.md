@@ -31,7 +31,7 @@ Add env variables to `.env` file:
 To obtain the correct values for the .env file please follow this guide: [Firebase Realtime Database Setup](./docs/FIREBASE_SETUP.md)
 
 ```bash
-API_BASE_URL=http://localhost:8000
+API_BASE_URL=http://localhost:8080
 FIREBASE_API_KEY=***
 FIREBASE_AUTH_DOMAIN=***
 FIREBASE_DATABASE_URL=***
