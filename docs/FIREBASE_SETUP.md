@@ -6,31 +6,31 @@
 
 ### Give the project a name
 
-![](docs/media/firebase_setup/name_project.png)
+![](./media/firebase_setup/name_project.png)
 
 ### Don't enable Google Analytics
 
-![](docs/media/firebase_setup/analytics.png)
+![](./media/firebase_setup/analytics.png)
 
 ### Project is created
 
-![](docs/media/firebase_setup/created.png)
+![](./media/firebase_setup/created.png)
 
 ### On The Firebase Console, Click the "</>" button
 
-![](docs/media/firebase_setup/console.png)
+![](./media/firebase_setup/console.png)
 
 ### Register web app
 
 No need to select hosting.
 
-![](docs/media/firebase_setup/app.png)
+![](./media/firebase_setup/app.png)
 
 ### Copy contents of `firebaseConfig` to your `.env` file
 
 Continue to console
 
-![](docs/media/firebase_setup/app_config.jpg)
+![](./media/firebase_setup/app_config.jpg)
 
 ```javascript
 var firebaseConfig = {
@@ -55,7 +55,7 @@ FIREBASE_APP_ID=***
 
 ### Also add the url found in the root of the database to the `.env` file
 
-![](docs/media/firebase_setup/database_url.png)
+![](./media/firebase_setup/database_url.png)
 
 ```bash
 FIREBASE_DATABASE_URL=https://planningpoker-public-default-rtdb.europe-west1.firebasedatabase.app/
@@ -63,35 +63,35 @@ FIREBASE_DATABASE_URL=https://planningpoker-public-default-rtdb.europe-west1.fir
 
 ### Click the Realtime Database link in the menu
 
-![](docs/media/firebase_setup/realtime_database_menu_option.png)
+![](./media/firebase_setup/realtime_database_menu_option.png)
 
 ### Create Realtime Database
 
-![](docs/media/firebase_setup/create_realtime_database.png)
+![](./media/firebase_setup/create_realtime_database.png)
 
 ### Select Database Location
 
-![](docs/media/firebase_setup/setup_database_step_1.png)
+![](./media/firebase_setup/setup_database_step_1.png)
 
 ### Select Database Security Rules to `test mode`
 
-![](docs/media/firebase_setup/setup_database_step_2.png)
+![](./media/firebase_setup/setup_database_step_2.png)
 
 ### The Database is now created!
 
-![](docs/media/firebase_setup/database_home.png)
+![](./media/firebase_setup/database_home.png)
 
 ### The Database is now created!
 
-![](docs/media/firebase_setup/project_settings_menu_option.png)
+![](./media/firebase_setup/project_settings_menu_option.png)
 
 ### The Database is now created!
 
-![](docs/media/firebase_setup/service_account_settings.png)
+![](./media/firebase_setup/service_account_settings.png)
 
 ### Generate Firebase AdminSDK Key JSON-file
 
-![](docs/media/firebase_setup/generate_key.png)
+![](./media/firebase_setup/generate_key.png)
 
 ### Rename the JSON-File and put it in the Root of the BACKEND Repo
 
