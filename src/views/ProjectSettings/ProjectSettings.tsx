@@ -5,10 +5,12 @@ import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import BreadCrumbs from "components/BreadCrumbs";
 import handleError from "helpers/ErrorKit";
+import { useProjectTitle } from "helpers/hooks";
 
 const ProjectSettingsView = (): JSX.Element => {
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
+  const projectTitle = useProjectTitle(projectId);
 
   const deleteProject = async () => {
     try {
@@ -18,16 +20,6 @@ const ProjectSettingsView = (): JSX.Element => {
       handleError(error);
     }
   };
-  const [projectTitle, setProjectTitle] = useState("");
-  const fetchProjectTitle = async () => {
-    try {
-      const { data } = await APIKit.projects.getProject(projectId);
-      setProjectTitle(data.title);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    fetchProjectTitle();
-  }, []);
 
   return (
     <div className="pt-48 bg-gray-900 h-screen flex flex-wrap justify-center items-start text-white">
