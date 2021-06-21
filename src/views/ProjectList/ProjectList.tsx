@@ -1,16 +1,15 @@
 import Head from "next/head";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectList from "./components/ProjectList";
 import CreateProjectForm from "./components/CreateProjectForm";
 import APIKit from "helpers/APIKit";
 
 import { Modal } from "reactstrap";
-import { SnackBarContext } from "pages/_app";
 import ProjectEmptyState from "./components/ProjectEmptyState";
+import handleError from "helpers/ErrorKit";
 
 // TODO June 19, 2021: Add debouncing
 const ProjectListView = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const [isLoading, setIsLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchTerm, setSearchTerm] = useState("");

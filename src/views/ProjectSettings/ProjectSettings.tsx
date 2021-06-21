@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import { SnackBarContext } from "pages/_app";
 import Head from "next/head";
 import BreadCrumbs from "components/BreadCrumbs";
+import handleError from "helpers/ErrorKit";
 
 const ProjectSettingsView = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
 

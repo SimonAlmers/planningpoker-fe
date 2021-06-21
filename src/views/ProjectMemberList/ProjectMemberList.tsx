@@ -2,16 +2,15 @@ import APIKit from "helpers/APIKit";
 import Head from "next/head";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import React, { useContext, useEffect, useState } from "react";
-import { SnackBarContext } from "pages/_app";
+import React, { useEffect, useState } from "react";
 import BreadCrumbs from "components/BreadCrumbs";
 import InviteModal from "./components/InviteModal";
 import MemberTable from "./components/MemberTable/MemberTable";
+import handleError from "helpers/ErrorKit";
 
 const ProjectMemberListView = (): JSX.Element => {
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
-  const { handleError } = useContext(SnackBarContext);
   const [projectTitle, setProjectTitle] = useState("");
   const [displayInviteModal, setDisplayInviteModal] = useState(false);
 

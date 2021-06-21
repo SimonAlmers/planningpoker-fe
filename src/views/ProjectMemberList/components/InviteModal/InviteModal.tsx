@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
-import { SnackBarContext } from "pages/_app";
+import handleError from "helpers/ErrorKit";
 
 const InviteModal = ({
   isOpen,
@@ -17,7 +17,6 @@ const InviteModal = ({
   const [inviteLink, setInviteLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
   const [fullUrl, setFullUrl] = useState("");
-  const { handleError } = useContext(SnackBarContext);
 
   const fetchInviteLink = async () => {
     try {

@@ -1,7 +1,6 @@
 import APIKit from "helpers/APIKit";
-import { SnackBarContext } from "pages/_app";
-
-import React, { useContext, useState } from "react";
+import handleError from "helpers/ErrorKit";
+import React, { useState } from "react";
 
 const CreateStoryForm = ({
   projectId,
@@ -10,7 +9,6 @@ const CreateStoryForm = ({
   projectId: string;
   onSubmitCallback: () => void;
 }): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 

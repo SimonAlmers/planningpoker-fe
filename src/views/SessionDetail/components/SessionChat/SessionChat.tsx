@@ -1,7 +1,8 @@
 import ChatMessage from "components/ChatMessage";
 import APIKit from "helpers/APIKit";
+import handleError from "helpers/ErrorKit";
 import RealTimeKit, { objectToArray } from "helpers/RealTimeKit";
-import { SnackBarContext, UserContext } from "pages/_app";
+import { UserContext } from "pages/_app";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 import styles from "../../SessionDetail.module.scss";
@@ -14,7 +15,6 @@ const SessionChat = ({
   sessionId: string;
 }): JSX.Element => {
   const { user } = useContext(UserContext);
-  const { handleError } = useContext(SnackBarContext);
   const [messages, setMessages] = useState({});
   const [messageDraft, setMessageDraft] = useState("");
   const ref = useRef(null);

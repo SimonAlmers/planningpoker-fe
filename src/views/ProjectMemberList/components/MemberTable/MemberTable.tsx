@@ -1,12 +1,12 @@
 import ProfileIcon from "components/ProfileIcon";
 import APIKit from "helpers/APIKit";
 import { PROJECT_MEMBER_ROLES } from "helpers/Constants";
-import { SnackBarContext, UserContext } from "pages/_app";
+import handleError from "helpers/ErrorKit";
+import { UserContext } from "pages/_app";
 import React, { useContext, useEffect, useState } from "react";
 
 const MemberTable = ({ projectId }: { projectId: string }): JSX.Element => {
   const { user } = useContext(UserContext);
-  const { handleError } = useContext(SnackBarContext);
   const [members, setMembers] = useState([]);
 
   const isOwner = () => {

@@ -1,6 +1,8 @@
 import { AnimateSharedLayout, motion } from "framer-motion";
-import RealTimeKit from "helpers/RealTimeKit";
-import { SnackBarContext, UserContext } from "pages/_app";
+import APIKit from "helpers/APIKit";
+import handleError from "helpers/ErrorKit";
+import RealTimeKit, { objectToArray } from "helpers/RealTimeKit";
+import { UserContext } from "pages/_app";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./SnackBar.module.scss";
 
@@ -10,25 +12,30 @@ const variants = {
 };
 
 const SnackBar = (): JSX.Element => {
-  const { messages, dismissMessage, queueMessage } =
-    useContext(SnackBarContext);
   const { user } = useContext(UserContext);
   const [notifications, setNotifications] = useState({});
 
+  const dismissMessage = async (id: string) => {
+    try {
+      await APIKit.notifications.markRead(id);
+      const newState = { ...notifications };
+      delete newState[id];
+      setNotifications({ ...newState });
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   useEffect(() => {
     const notificationEngine = RealTimeKit.user.notifications(user?.id);
-    notificationEngine.onChildAdded((snapchot) => {
-      const notification = snapchot.val();
-      setNotifications((prev) => ({
-        ...prev,
-        [notification.id]: notification,
-      }));
-      queueMessage({
-        id: notification.id,
-        title: notification.message,
-        text: notification.context,
-        isError: false,
-      });
+    notificationEngine.onChildAdded((snapshot) => {
+      const notification = snapshot.val();
+      if (notification.readAt === "None") {
+        setNotifications((prev) => ({
+          ...prev,
+          [notification.id]: notification,
+        }));
+      }
     });
 
     return () => {
@@ -40,7 +47,7 @@ const SnackBar = (): JSX.Element => {
     <div className={styles.snackBarContainer}>
       <AnimateSharedLayout>
         <motion.ul layout>
-          {messages.map((message, index) => (
+          {objectToArray(notifications).map((message, index) => (
             <motion.div
               layout
               key={`snackbar-${index}`}
@@ -49,8 +56,8 @@ const SnackBar = (): JSX.Element => {
               variants={variants}
               className={`${styles.snackBar} bg-gray-200 p-3 rounded-md shadow-lg flex flex-column mt-2`}
             >
-              <h1 className="font-bold">{message.title}</h1>
-              <p className="mb-3">{message.text}</p>
+              <h1 className="font-bold">{message.message}</h1>
+              <p className="mb-3">{message.context}</p>
               <button
                 onClick={() => dismissMessage(message.id)}
                 className="btn bg-gray-400 align-self-end px-4 font-bold"

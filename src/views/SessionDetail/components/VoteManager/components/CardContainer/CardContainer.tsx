@@ -1,7 +1,7 @@
 import APIKit from "helpers/APIKit";
 import { STORY_POINT_SET } from "helpers/Constants";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext } from "react";
+import handleError from "helpers/ErrorKit";
+import React from "react";
 import styles from "../../../../SessionDetail.module.scss";
 import Card from "../Cards";
 
@@ -15,7 +15,6 @@ const CardContainer = ({
   };
   myVote: Vote;
 }): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const { castVote, updateVote } = APIKit.planningsessions.vote;
 
   const vote = async (point: number) => {

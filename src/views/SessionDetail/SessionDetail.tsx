@@ -1,8 +1,7 @@
 import Head from "next/head";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import { useRouter } from "next/dist/client/router";
-import { SnackBarContext } from "pages/_app";
 import SessionChat from "./components/SessionChat";
 import StoryList from "./components/StoryList";
 import VoteManager from "./components/VoteManager/VoteManager";
@@ -10,6 +9,7 @@ import styles from "./SessionDetail.module.scss";
 import RealTimeKit from "helpers/RealTimeKit";
 import BreadCrumbs from "components/BreadCrumbs";
 import RouteKit from "helpers/RouteKit";
+import handleError from "helpers/ErrorKit";
 
 type Session = {
   id: string;
@@ -18,7 +18,6 @@ type Session = {
 };
 
 const SessionDetailView = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const router = useRouter();
   const [focusedStory, setFocusedStory] =
     useState<{
