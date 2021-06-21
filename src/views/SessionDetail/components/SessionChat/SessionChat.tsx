@@ -50,7 +50,7 @@ const SessionChat = ({
     chatConnection.onChildAdded((snapshot) => {
       const message = snapshot.val();
 
-      message.user.id !== user.id && playRecieve();
+      // message.user.id !== user?.id && playRecieve();
       setMessages((prev) => ({ ...prev, [message.id]: message }));
     });
 
