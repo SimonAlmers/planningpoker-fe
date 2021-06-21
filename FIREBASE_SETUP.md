@@ -46,9 +46,9 @@ var firebaseConfig = {
 ```bash
 
 FIREBASE_API_KEY=***
-FIREBASE_AUTH_DOMAIN=***
-FIREBASE_PROJECT_ID=***
-FIREBASE_STORAGE_BUCKET=***
+FIREBASE_AUTH_DOMAIN=planningpoker-public.firebaseapp.com
+FIREBASE_PROJECT_ID=planningpoker-public
+FIREBASE_STORAGE_BUCKET=planningpoker-public.appspot.com
 FIREBASE_MESSAGING_SENDER_ID=***
 FIREBASE_APP_ID=***
 ```
@@ -58,7 +58,7 @@ FIREBASE_APP_ID=***
 ![](docs/media/firebase_setup/database_url.png)
 
 ```bash
-FIREBASE_DATABASE_URL=***
+FIREBASE_DATABASE_URL=https://planningpoker-public-default-rtdb.europe-west1.firebasedatabase.app/
 ```
 
 ### Click the Realtime Database link in the menu
