@@ -1,12 +1,12 @@
 import Head from "next/head";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import { SnackBarContext } from "pages/_app";
 import CreateStoryModal from "./components/CreateStoryModal";
 import ProjectMenu from "./components/ProjectMenu";
 import StoryContainer from "./components/StoryContainer";
+import handleError from "helpers/ErrorKit";
 
 type ProjectFull = Project & {
   stories: Story[];
@@ -15,7 +15,6 @@ type ProjectFull = Project & {
 const ProjectDetailView = (): JSX.Element => {
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
-  const { handleError } = useContext(SnackBarContext);
   const [project, setProject] = useState<ProjectFull | null>(null);
   const [displayCreateStoryModal, setDisplayCreateStoryModal] = useState(false);
 

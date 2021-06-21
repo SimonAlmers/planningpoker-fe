@@ -1,12 +1,12 @@
 import APIKit from "helpers/APIKit";
+import handleError from "helpers/ErrorKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { SnackBarContext, UserContext } from "pages/_app";
+import { UserContext } from "pages/_app";
 import React, { useContext, useState } from "react";
 
 const LoginForm = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,10 +30,7 @@ const LoginForm = (): JSX.Element => {
       const { data } = await APIKit.me.getMe();
       setUser(data);
     } catch (error) {
-      handleError({
-        title: "There Was An Error Logging In",
-        text: "Check your credentials and try again.",
-      });
+      handleError(error);
     }
 
     if (nextRoute) {

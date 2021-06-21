@@ -1,13 +1,11 @@
 import APIKit from "helpers/APIKit";
-
+import handleError from "helpers/ErrorKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 const SignupForm = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

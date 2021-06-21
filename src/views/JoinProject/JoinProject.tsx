@@ -4,11 +4,11 @@ import APIKit from "helpers/APIKit";
 
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext } from "react";
+
+import React from "react";
+import handleError from "helpers/ErrorKit";
 
 const JoinProjectView = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const router = useRouter();
   const inviteCode = router.query.inviteCode?.toString();
 

@@ -1,7 +1,7 @@
 import StoryListItem from "components/StoryListItem";
 import APIKit from "helpers/APIKit";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext } from "react";
+import handleError from "helpers/ErrorKit";
+import React from "react";
 import styles from "../../SessionDetail.module.scss";
 
 const StoryList = ({
@@ -15,8 +15,6 @@ const StoryList = ({
   stories: Story[];
   focusedStoryId: string | undefined;
 }): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
-
   const focusOnStory = async (storyId: string) => {
     try {
       await APIKit.planningsessions.updateSession(projectId, sessionId, {
