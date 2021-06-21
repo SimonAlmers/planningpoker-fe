@@ -1,35 +1,21 @@
-import APIKit from "helpers/APIKit";
 import Head from "next/head";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BreadCrumbs from "components/BreadCrumbs";
 import InviteModal from "./components/InviteModal";
 import MemberTable from "./components/MemberTable/MemberTable";
-import handleError from "helpers/ErrorKit";
+import { useProjectTitle } from "helpers/hooks";
 
 const ProjectMemberListView = (): JSX.Element => {
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
-  const [projectTitle, setProjectTitle] = useState("");
+  const projectTitle = useProjectTitle(projectId);
   const [displayInviteModal, setDisplayInviteModal] = useState(false);
 
   const toggleInviteModal = () => {
     setDisplayInviteModal((prev) => !prev);
   };
-
-  const fetchProjectTitle = async () => {
-    try {
-      const { data } = await APIKit.projects.getProject(projectId);
-      setProjectTitle(data.title);
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProjectTitle();
-  }, [router]);
 
   return (
     <div className="pt-48 bg-gray-900 h-screen flex flex-wrap justify-center items-start text-white">

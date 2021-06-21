@@ -5,6 +5,7 @@ import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import BreadCrumbs from "components/BreadCrumbs";
 import handleError from "helpers/ErrorKit";
+import { useProjectTitle } from "helpers/hooks";
 
 const StoryDetailView = (): JSX.Element => {
   const router = useRouter();
@@ -12,17 +13,7 @@ const StoryDetailView = (): JSX.Element => {
   const [description, setDescription] = useState("");
   const projectId = router.query.projectId?.toString();
   const storyId = router.query.storyId?.toString();
-
-  const [projectTitle, setProjectTitle] = useState("");
-  const fetchProjectTitle = async () => {
-    try {
-      const { data } = await APIKit.projects.getProject(projectId);
-      setProjectTitle(data.title);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    fetchProjectTitle();
-  }, []);
+  const projectTitle = useProjectTitle(projectId);
 
   const fetchStory = async () => {
     try {
