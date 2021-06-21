@@ -1,15 +1,19 @@
 .sesssionGrid {
-  height: 100%;
+  height: calc(100vh - 180px);
   display: grid;
   grid-template-columns:
     350px minmax(48px, 1fr) minmax(700px, 1000px) minmax(48px, 1fr)
     350px;
-  grid-template-rows: 2fr 1fr minmax(100px, 200px);
+  grid-template-rows: 2fr 1fr minmax(100px, 250px);
   row-gap: 100px;
   grid-template-areas:
     "storyContainer spacer1 story spacer2 chatContainer"
     "storyContainer spacer1 votes spacer2 chatContainer"
-    "storyContainer spacer1 cardContainer spacer2 chatContainer";
+    "participants spacer1 cardContainer spacer2 chatContainer";
+}
+
+.participants {
+  grid-area: participants;
 }
 
 .storyContainer {
@@ -30,4 +34,19 @@
 
 .chatContainer {
   grid-area: chatContainer;
+}
+
+.statusIndicator {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+
+  &.isOnline {
+    background-color: greenyellow;
+  }
+
+  &.isOffline {
+    background-color: gray;
+  }
 }

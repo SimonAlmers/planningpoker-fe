@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import { SnackBarContext } from "pages/_app";
 import CreateStoryModal from "./components/CreateStoryModal";
 import ProjectMenu from "./components/ProjectMenu";
 import StoryContainer from "./components/StoryContainer";
-
-type Story = { title: string; id: string; description: string };
+import handleError from "helpers/ErrorKit";
 
 type ProjectFull = Project & {
   stories: Story[];
@@ -16,7 +15,6 @@ type ProjectFull = Project & {
 const ProjectDetailView = (): JSX.Element => {
   const router = useRouter();
   const projectId = router.query.projectId?.toString();
-  const { handleError } = useContext(SnackBarContext);
   const [project, setProject] = useState<ProjectFull | null>(null);
   const [displayCreateStoryModal, setDisplayCreateStoryModal] = useState(false);
 
@@ -60,6 +58,9 @@ const ProjectDetailView = (): JSX.Element => {
 
   return (
     <div className="h-screen bg-gray-900 flex justify-center items-start pt-24 text-white">
+      <Head>
+        <title>{project?.title || "Project"} | Planning Poker</title>
+      </Head>
       {project && (
         <div className="w-full px-12 h-full max-h-full">
           <CreateStoryModal
@@ -68,6 +69,7 @@ const ProjectDetailView = (): JSX.Element => {
             toggleCreateStoryModal={toggleCreateStoryModal}
             onCreateCallback={createStoryCallback}
           />
+
           <ProjectMenu
             project={project}
             toggleCreateStoryModal={toggleCreateStoryModal}

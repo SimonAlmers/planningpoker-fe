@@ -1,13 +1,11 @@
 import APIKit from "helpers/APIKit";
-
+import handleError from "helpers/ErrorKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 const SignupForm = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,7 +33,7 @@ const SignupForm = (): JSX.Element => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-800 text-gray-200 p-12 shadow-lg rounded-lg items-start"
+      className="bg-gray-800 text-gray-200 py-8 px-6 shadow-lg rounded-lg items-start"
     >
       <h1 className="text-2xl font-bold">Sign Up</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>

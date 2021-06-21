@@ -9,7 +9,7 @@ const NavMenu = (): JSX.Element => {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="fixed w-screen text-white px-10 py-4 flex justify-center">
+    <div className="fixed w-screen text-white px-2 md:px-10 py-4 flex justify-center">
       <nav className="max-w-7xl w-full flex justify-between items-center">
         <Link href="/" as="/">
           <a>
@@ -38,7 +38,7 @@ const NavMenu = (): JSX.Element => {
             </>
           ) : (
             <>
-              <li className="ml-8">
+              <li className="ml-2 md:ml-8">
                 <Link
                   href={RouteKit.register().href}
                   as={RouteKit.register().as}
@@ -48,7 +48,7 @@ const NavMenu = (): JSX.Element => {
                   </a>
                 </Link>
               </li>
-              <li className="ml-8">
+              <li className="ml-2 md:ml-8">
                 <Link href={RouteKit.login().href} as={RouteKit.login().as}>
                   <a className="border-2 border-yellow-400 text-yellow-400 px-4 py-2 rounded font-bold">
                     Login

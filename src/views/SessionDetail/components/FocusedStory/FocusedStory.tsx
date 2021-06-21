@@ -7,7 +7,8 @@ const FocusedStory = ({
   story: Story;
 }): JSX.Element => (
   <div className={`${styles.story} bg-gray-700 rounded-lg p-5`}>
-    <h2 className="text-xl font-bold">{title}</h2>
+    <h2 className="text-xl font-bold mb-4">{title}</h2>
+    <h3 className="font-bold">Description</h3>
     <p>{description}</p>
   </div>
 );

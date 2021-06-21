@@ -1,12 +1,12 @@
 import APIKit from "helpers/APIKit";
+import handleError from "helpers/ErrorKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { SnackBarContext, UserContext } from "pages/_app";
+import { UserContext } from "pages/_app";
 import React, { useContext, useState } from "react";
 
 const LoginForm = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,10 +30,7 @@ const LoginForm = (): JSX.Element => {
       const { data } = await APIKit.me.getMe();
       setUser(data);
     } catch (error) {
-      handleError({
-        title: "There Was An Error Logging In",
-        text: "Check your credentials and try again.",
-      });
+      handleError(error);
     }
 
     if (nextRoute) {
@@ -46,7 +43,7 @@ const LoginForm = (): JSX.Element => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-800 text-gray-200 p-12 shadow-lg rounded-lg items-start"
+      className="bg-gray-800 text-gray-200 py-8 px-6 shadow-lg rounded-lg items-start"
     >
       <h1 className="text-2xl font-bold">Login</h1>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>

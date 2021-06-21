@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
 import ProjectList from "./components/ProjectList";
 import CreateProjectForm from "./components/CreateProjectForm";
 import APIKit from "helpers/APIKit";
 
-import EmptyState from "./components/EmptyState";
 import { Modal } from "reactstrap";
-import { SnackBarContext } from "pages/_app";
+import ProjectEmptyState from "./components/ProjectEmptyState";
+import handleError from "helpers/ErrorKit";
 
 // TODO June 19, 2021: Add debouncing
 const ProjectListView = (): JSX.Element => {
-  const { handleError } = useContext(SnackBarContext);
   const [isLoading, setIsLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +40,10 @@ const ProjectListView = (): JSX.Element => {
     fetchProjectList();
   }, [searchTerm]);
   return (
-    <div className="pt-48 bg-gray-900 h-screen flex justify-center text-white">
+    <div className="pt-48 px-4 bg-gray-900 h-screen flex justify-center text-white">
+      <Head>
+        <title>My Projects | Planning Poker</title>
+      </Head>
       <h1 className="sr-only">My Projects</h1>
       <Modal
         isOpen={displayCreateProjectModal}
@@ -50,9 +53,9 @@ const ProjectListView = (): JSX.Element => {
       >
         <CreateProjectForm projectCreateCallback={projectCreateCallback} />
       </Modal>
-
       {!isLoading && searchTerm.length === 0 && projects.length === 0 ? (
-        <EmptyState
+        <ProjectEmptyState
+          isSearch={searchTerm.length > 0}
           onClick={() => {
             setDisplayCreateProjectModal(true);
           }}
@@ -82,8 +85,8 @@ const ProjectListView = (): JSX.Element => {
           </div>
           <hr className="bg-gray-700 my-3 mx-2" />
           {projects.length === 0 && !isLoading ? (
-            <EmptyState
-              search
+            <ProjectEmptyState
+              isSearch={searchTerm.length > 0}
               onClick={() => {
                 setDisplayCreateProjectModal(true);
               }}
