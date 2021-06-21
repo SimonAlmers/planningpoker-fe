@@ -1,6 +1,7 @@
 import { AnimateSharedLayout, motion } from "framer-motion";
-import { SnackBarContext } from "pages/_app";
-import React, { useContext } from "react";
+import RealTimeKit from "helpers/RealTimeKit";
+import { SnackBarContext, UserContext } from "pages/_app";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./SnackBar.module.scss";
 
 const variants = {
@@ -9,7 +10,32 @@ const variants = {
 };
 
 const SnackBar = (): JSX.Element => {
-  const { messages, dismissMessage } = useContext(SnackBarContext);
+  const { messages, dismissMessage, queueMessage } =
+    useContext(SnackBarContext);
+  const { user } = useContext(UserContext);
+  const [notifications, setNotifications] = useState({});
+
+  useEffect(() => {
+    const notificationEngine = RealTimeKit.user.notifications(user?.id);
+    notificationEngine.onChildAdded((snapchot) => {
+      const notification = snapchot.val();
+      setNotifications((prev) => ({
+        ...prev,
+        [notification.id]: notification,
+      }));
+      queueMessage({
+        id: notification.id,
+        title: notification.message,
+        text: notification.context,
+        isError: false,
+      });
+    });
+
+    return () => {
+      notificationEngine.off();
+    };
+  }, [user]);
+
   return (
     <div className={styles.snackBarContainer}>
       <AnimateSharedLayout>
