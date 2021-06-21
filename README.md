@@ -1,5 +1,7 @@
 # Planning Poker Frontend
 
+### **Live Demo: [planningpoker.simonalmers.dev](https://planningpoker.simonalmers.dev/)**
+
 A React/Next.js application for managing agile projects with realtime Scrum Poker sessions.
 
 ![Realtime Voting Demo](./docs/media/planningpoker-voting-demo.gif)
