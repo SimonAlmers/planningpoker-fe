@@ -1,0 +1,33 @@
+.sesssionGrid {
+  height: 100%;
+  display: grid;
+  grid-template-columns:
+    350px minmax(48px, 1fr) minmax(700px, 1000px) minmax(48px, 1fr)
+    350px;
+  grid-template-rows: 2fr 1fr minmax(100px, 200px);
+  row-gap: 100px;
+  grid-template-areas:
+    "storyContainer spacer1 story spacer2 chatContainer"
+    "storyContainer spacer1 votes spacer2 chatContainer"
+    "storyContainer spacer1 cardContainer spacer2 chatContainer";
+}
+
+.storyContainer {
+  grid-area: storyContainer;
+}
+
+.story {
+  grid-area: story;
+}
+
+.votes {
+  grid-area: votes;
+}
+
+.cardContainer {
+  grid-area: cardContainer;
+}
+
+.chatContainer {
+  grid-area: chatContainer;
+}
