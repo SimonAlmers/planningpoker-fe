@@ -1,0 +1,19 @@
+.card {
+  width: 100px;
+  height: 140px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 500ms 500ms;
+  -webkit-transition: background-image 50ms 450ms;
+  transition: background-image 50ms 450ms;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    transition: all 500ms 500ms;
+  }
+}

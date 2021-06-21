@@ -4,13 +4,29 @@ const BaseRoutes = {
     as: "/",
   },
   register: (next?: string) => ({
-    href: "/register",
-    as: `/register${next !== undefined ? `?next=${next}` : ""}`,
+    href: `/signup${
+      next !== undefined ? `?next=${encodeURIComponent(next)}` : ""
+    }`,
+    as: `/signup${
+      next !== undefined ? `?next=${encodeURIComponent(next)}` : ""
+    }`,
   }),
+  settings: {
+    href: "/settings",
+    as: `/settings`,
+  },
   login: (next?: string) => ({
-    href: "/login",
-    as: `/login${next !== undefined ? `?next=${next}` : ""}`,
+    href: `/login${
+      next !== undefined ? `?next=${encodeURIComponent(next)}` : ""
+    }`,
+    as: `/login${
+      next !== undefined ? `?next=${encodeURIComponent(next)}` : ""
+    }`,
   }),
+  logout: {
+    href: "/logout",
+    as: `/logout`,
+  },
 };
 
 export default BaseRoutes;
