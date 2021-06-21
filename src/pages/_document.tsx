@@ -1,4 +1,3 @@
-import NavMenu from "components/NavMenu";
 import Document, {
   DocumentContext,
   Html,
@@ -6,7 +5,6 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import Link from "next/link";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -31,12 +29,9 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
         </Head>
-        <body className="bg-light container-fluid p-0">
-          <NavMenu />
-          <div className="container-fluid p-0">
-            <Main />
-            <NextScript />
-          </div>
+        <body className="bg-gray-900">
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );

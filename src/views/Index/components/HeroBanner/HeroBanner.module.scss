@@ -1,0 +1,17 @@
+.heroBanner {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/img/hero-bg-img.jpg");
+}
+
+.heroTitle {
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  font-size: 8rem;
+}
