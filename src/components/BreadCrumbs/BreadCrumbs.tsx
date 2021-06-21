@@ -12,20 +12,16 @@ const BreadCrumbs = ({
       <ul className="flex items-center">
         {links.map((crumb, index) =>
           isLastLink(index) ? (
-            <>
-              <li className="mr-2 font-bold" key={crumb.label}>
-                {crumb.label}
-              </li>
-            </>
+            <li className="mr-2 font-bold" key={crumb.label}>
+              {crumb.label}
+            </li>
           ) : (
-            <>
-              <li className="mr-2 text-gray-400" key={crumb.label}>
-                <Link href={crumb.url.href} as={crumb.url.as}>
-                  <a>{crumb.label}</a>
-                </Link>
-              </li>
-              <i className="fas fa-angle-right mr-2"></i>
-            </>
+            <li className="mr-2 text-gray-400" key={crumb.label}>
+              <Link href={crumb.url.href} as={crumb.url.as}>
+                <a>{crumb.label}</a>
+              </Link>
+              <i className="fas fa-angle-right ml-2"></i>
+            </li>
           )
         )}
       </ul>

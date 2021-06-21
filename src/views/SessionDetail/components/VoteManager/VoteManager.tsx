@@ -8,9 +8,11 @@ import VoteContainer from "./components/VoteContainer";
 const VoteManager = ({
   focusedStory,
   projectId,
+  activeParticipants,
 }: {
   focusedStory: Story;
   projectId: string;
+  activeParticipants: number;
 }): JSX.Element => {
   const [votes, setVotes] = useState({});
   const { user } = useContext(UserContext);
@@ -37,7 +39,10 @@ const VoteManager = ({
   return (
     <>
       <FocusedStory story={focusedStory} />
-      <VoteContainer votes={objectToArray(votes)} />
+      <VoteContainer
+        votes={objectToArray(votes)}
+        activeParticipants={activeParticipants}
+      />
       <CardContainer
         story={focusedStory}
         myVote={objectToArray(votes).find(

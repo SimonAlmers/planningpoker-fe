@@ -95,6 +95,12 @@ const RealTimeKit = {
         .ref(`/projects/${projectId}/sessions/${sessionId}/comments`);
       return eventListners(ref);
     },
+    participants: (projectId: string, sessionId: string) => {
+      const ref = firebase
+        .database()
+        .ref(`/projects/${projectId}/sessions/${sessionId}/participants`);
+      return eventListners(ref);
+    },
   },
 };
 

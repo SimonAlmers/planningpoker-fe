@@ -18,12 +18,12 @@ const PlanningSessionEndpoints = {
     return HTTPKit.post(url, { userId });
   },
   participant: {
-    heartbeat: (session: number) => {
-      const url = "";
+    heartbeat: (projectId: string, sessionId: string) => {
+      const url = `/api/v1/projects/${projectId}/sessions/${sessionId}/participants/heartbeat/`;
       return HTTPKit.post(url, {});
     },
-    exit: (session: number) => {
-      const url = "";
+    exit: (projectId: string, sessionId: string) => {
+      const url = `/api/v1/projects/${projectId}/sessions/${sessionId}/participants/exit/`;
       return HTTPKit.post(url, {});
     },
   },
