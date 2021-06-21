@@ -3,9 +3,9 @@ import ProjectList from "./components/ProjectList";
 import CreateProjectForm from "./components/CreateProjectForm";
 import APIKit from "helpers/APIKit";
 
-import EmptyState from "./components/EmptyState";
 import { Modal } from "reactstrap";
 import { SnackBarContext } from "pages/_app";
+import ProjectEmptyState from "./components/ProjectEmptyState";
 
 // TODO June 19, 2021: Add debouncing
 const ProjectListView = (): JSX.Element => {
@@ -52,7 +52,8 @@ const ProjectListView = (): JSX.Element => {
       </Modal>
 
       {!isLoading && searchTerm.length === 0 && projects.length === 0 ? (
-        <EmptyState
+        <ProjectEmptyState
+          isSearch={searchTerm.length > 0}
           onClick={() => {
             setDisplayCreateProjectModal(true);
           }}
@@ -82,8 +83,8 @@ const ProjectListView = (): JSX.Element => {
           </div>
           <hr className="bg-gray-700 my-3 mx-2" />
           {projects.length === 0 && !isLoading ? (
-            <EmptyState
-              search
+            <ProjectEmptyState
+              isSearch={searchTerm.length > 0}
               onClick={() => {
                 setDisplayCreateProjectModal(true);
               }}

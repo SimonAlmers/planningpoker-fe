@@ -1,3 +1,4 @@
+import EmptyState from "components/EmptyState";
 import APIKit from "helpers/APIKit";
 
 import RouteKit from "helpers/RouteKit";
@@ -21,15 +22,14 @@ const JoinProjectView = (): JSX.Element => {
   };
 
   return (
-    <div className="pt-48 bg-gray-900 h-screen flex justify-center text-white">
+    <div className="pt-32 bg-gray-900 h-screen flex justify-center text-white">
       <div className="max-w-7xl w-full">
-        <h1 className="text-xl font-bold">Join The Project</h1>
-        <button
-          onClick={joinProject}
-          className="btn bg-yellow-400 text-black font-bold"
-        >
-          <i className="fas fa-user-plus mr-2" /> Join Project
-        </button>
+        <EmptyState
+          img="/img/illustrations/project_join.svg"
+          title="Join this project?"
+          bodyCopy="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex dicta pariatur corporis aspernatur sunt? Officia iste magni, libero quibusdam quam ullam eum quia asperiores quae non vitae hic exercitationem excepturi. "
+          button={{ label: "Join Project", onClick: joinProject }}
+        />
       </div>
     </div>
   );
