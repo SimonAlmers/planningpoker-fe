@@ -5,7 +5,7 @@ import styles from "./Card.module.scss";
 const cardVariants = {
   start: { scale: 0, rotate: -90, y: 500 },
   end: { scale: 1, rotate: 0, y: 0 },
-  selected: { scale: 1, rotate: 0, y: -100 },
+  selected: { scale: 1, rotate: 0, y: -120 },
 };
 
 const Card = ({

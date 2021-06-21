@@ -48,7 +48,6 @@ const SessionChat = ({
     const chatConnection = RealTimeKit.session.chat(projectId, sessionId);
 
     chatConnection.onChildAdded((snapshot) => {
-      console.log({ message: snapshot.val() });
       const message = snapshot.val();
 
       message.user.id !== user.id && playRecieve();
@@ -57,7 +56,9 @@ const SessionChat = ({
 
     setTimeout(() => {
       setAutoScrollChat(true);
-      ref.current.scrollIntoView({ behavior: "smooth" });
+      if (ref.current && autoScrollChat) {
+        ref.current.scrollIntoView({ behavior: "smooth" });
+      }
     }, 1000);
 
     return () => {

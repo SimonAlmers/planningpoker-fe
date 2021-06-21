@@ -3,13 +3,18 @@ import React, { useEffect, useState } from "react";
 import styles from "../../../../SessionDetail.module.scss";
 import Vote from "../Vote/Vote";
 
-const VoteContainer = ({ votes }: { votes: Vote[] }): JSX.Element => {
+const VoteContainer = ({
+  votes,
+  activeParticipants,
+}: {
+  votes: Vote[];
+  activeParticipants: number;
+}): JSX.Element => {
   const [displayVotes, setDisplayVotes] = useState(false);
-  const numVotes = 4;
 
   useEffect(() => {
     setTimeout(() => {
-      setDisplayVotes(objectToArray(votes).length >= numVotes);
+      setDisplayVotes(objectToArray(votes).length >= activeParticipants);
     }, 500);
   }, [votes]);
 

@@ -37,7 +37,7 @@ const ChatMessage = ({
     >
       {displayTimestamp && (
         <p style={{ fontSize: "0.625rem" }} className="mb-0 text-white">
-          {formatDistance(new Date(createdAt), new Date())}
+          {formatDistance(new Date(createdAt.replace(" ", "T")), new Date())}
         </p>
       )}
       <div
