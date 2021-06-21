@@ -1,3 +1,4 @@
+import BreadCrumbs from "components/BreadCrumbs";
 import RouteKit from "helpers/RouteKit";
 import Link from "next/link";
 import React from "react";
@@ -17,16 +18,12 @@ const ProjectMenu = ({
 }): JSX.Element => {
   return (
     <div className="py-8 flex justify-between items-center">
-      <div>
-        <Link href={projectListRoute.href} as={projectListRoute.as}>
-          <a className="text-yellow-400">
-            <i className="fas fa-angle-left mr-2" />
-            Projects
-          </a>
-        </Link>
-        <h1 className="text-xl font-bold">{title}</h1>
-        <p>{description}</p>
-      </div>
+      <BreadCrumbs
+        links={[
+          { label: "Projects", url: projectListRoute },
+          { label: title, url: { href: "", as: "" } },
+        ]}
+      />
       <nav>
         <ul className="flex items-center">
           <li className="ml-4">
