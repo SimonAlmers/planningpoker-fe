@@ -35,7 +35,7 @@ const SignupForm = (): JSX.Element => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-800 text-gray-200 p-12 shadow-lg rounded-lg items-start"
+      className="bg-gray-800 text-gray-200 py-8 px-6 shadow-lg rounded-lg items-start"
     >
       <h1 className="text-2xl font-bold">Sign Up</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
