@@ -1,6 +1,10 @@
 # Planning Poker Frontend
 
-[Backend Repo](https://www.github.com/SimonAlmers/planningpoker-be)
+A React/Next.js application for managing agile projects with realtime Scrum Poker sessions.
+
+![Realtime Voting Demo](./docs/media/planningpoker-voting-demo.gif)
+
+### The frontend consumes the Planning Poker API found here: [PlanningPoker-API](https://www.github.com/SimonAlmers/planningpoker-be)
 
 # Setup
 
