@@ -8,6 +8,8 @@ import StoryList from "./components/StoryList";
 import VoteManager from "./components/VoteManager/VoteManager";
 import styles from "./SessionDetail.module.scss";
 import RealTimeKit from "helpers/RealTimeKit";
+import BreadCrumbs from "components/BreadCrumbs";
+import RouteKit from "helpers/RouteKit";
 
 type Session = {
   id: string;
@@ -56,11 +58,34 @@ const SessionDetailView = (): JSX.Element => {
     };
   }, [router]);
 
+  const [projectTitle, setProjectTitle] = useState("");
+  const fetchProjectTitle = async () => {
+    try {
+      const { data } = await APIKit.projects.getProject(projectId);
+      setProjectTitle(data.title);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchProjectTitle();
+  }, []);
+
   return (
     <div className="bg-gray-900 text-white pt-32 h-screen ">
       <Head>
         <title>Poker Session | Planning Poker</title>
       </Head>
+      <div className="mb-4">
+        <BreadCrumbs
+          links={[
+            { label: "Projects", url: RouteKit.project.list },
+            {
+              label: projectTitle,
+              url: RouteKit.project.detail(projectId),
+            },
+            { label: "Planning Session", url: { href: "", as: "" } },
+          ]}
+        />
+      </div>
       {session && (
         <div className={styles.sesssionGrid}>
           <StoryList

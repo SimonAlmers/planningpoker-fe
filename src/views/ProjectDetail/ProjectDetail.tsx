@@ -8,8 +8,6 @@ import CreateStoryModal from "./components/CreateStoryModal";
 import ProjectMenu from "./components/ProjectMenu";
 import StoryContainer from "./components/StoryContainer";
 
-type Story = { title: string; id: string; description: string };
-
 type ProjectFull = Project & {
   stories: Story[];
 };
@@ -72,6 +70,7 @@ const ProjectDetailView = (): JSX.Element => {
             toggleCreateStoryModal={toggleCreateStoryModal}
             onCreateCallback={createStoryCallback}
           />
+
           <ProjectMenu
             project={project}
             toggleCreateStoryModal={toggleCreateStoryModal}

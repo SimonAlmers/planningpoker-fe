@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
 import { SnackBarContext } from "pages/_app";
+import BreadCrumbs from "components/BreadCrumbs";
 
 const StoryDetailView = (): JSX.Element => {
   const router = useRouter();
@@ -13,6 +13,17 @@ const StoryDetailView = (): JSX.Element => {
   const [description, setDescription] = useState("");
   const projectId = router.query.projectId?.toString();
   const storyId = router.query.storyId?.toString();
+
+  const [projectTitle, setProjectTitle] = useState("");
+  const fetchProjectTitle = async () => {
+    try {
+      const { data } = await APIKit.projects.getProject(projectId);
+      setProjectTitle(data.title);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchProjectTitle();
+  }, []);
 
   const fetchStory = async () => {
     try {
@@ -53,18 +64,23 @@ const StoryDetailView = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-gray-800 h-screen text-white pt-48 text-white flex justify-center">
+    <div className="bg-gray-900 h-screen text-white pt-48 text-white flex justify-center">
       <Head>
         <title>{title || "Story"} | Planning Poker</title>
       </Head>
       <form className="max-w-7xl w-full" onSubmit={handleSubmit}>
         <div className="flex justify-between">
-          <Link
-            href={RouteKit.project.detail(projectId).href}
-            as={RouteKit.project.detail(projectId).as}
-          >
-            <a>Back to project</a>
-          </Link>
+          <BreadCrumbs
+            links={[
+              { label: "Projects", url: RouteKit.project.list },
+              {
+                label: projectTitle,
+                url: RouteKit.project.detail(projectId),
+              },
+              { label: title, url: { href: "", as: "" } },
+            ]}
+          />
+
           <div>
             <button
               onClick={deleteStory}
@@ -77,7 +93,7 @@ const StoryDetailView = (): JSX.Element => {
             </button>
           </div>
         </div>
-        <fieldset className="mb-3">
+        <fieldset className="mb-3 pt-12">
           <label className="block font-bold" htmlFor="title">
             Title
           </label>

@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import { SnackBarContext } from "pages/_app";
 import Head from "next/head";
+import BreadCrumbs from "components/BreadCrumbs";
 
 const ProjectSettingsView = (): JSX.Element => {
   const { handleError } = useContext(SnackBarContext);
   const router = useRouter();
+  const projectId = router.query.projectId?.toString();
 
   const deleteProject = async () => {
-    const projectId = router.query.projectId?.toString();
     try {
       await APIKit.projects.deleteProject(projectId);
       router.push(RouteKit.project.list.href, RouteKit.project.list.as);
@@ -18,20 +19,41 @@ const ProjectSettingsView = (): JSX.Element => {
       handleError(error);
     }
   };
+  const [projectTitle, setProjectTitle] = useState("");
+  const fetchProjectTitle = async () => {
+    try {
+      const { data } = await APIKit.projects.getProject(projectId);
+      setProjectTitle(data.title);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchProjectTitle();
+  }, []);
 
   return (
-    <div className="h-screen bg-gray-900 pt-48 flex justify-center text-white">
+    <div className="pt-48 bg-gray-900 h-screen flex flex-wrap justify-center items-start text-white">
       <Head>
         <title>Project Settings | Planning Poker</title>
       </Head>
-      <div>
-        <h1 className="text-xl font-bold">Project Settings</h1>
-        <button
-          onClick={deleteProject}
-          className="btn bg-red-700 text-white font-bold"
-        >
-          Delete Project
-        </button>
+      <div className="max-w-7xl w-full">
+        <div className=" flex justify-between items-start">
+          <BreadCrumbs
+            links={[
+              { label: "Projects", url: RouteKit.project.list },
+              {
+                label: projectTitle,
+                url: RouteKit.project.detail(projectId),
+              },
+              { label: "Project Settings", url: RouteKit.project.list },
+            ]}
+          />
+          <button
+            onClick={deleteProject}
+            className="btn bg-red-700 text-white font-bold"
+          >
+            Delete Project
+          </button>
+        </div>
       </div>
     </div>
   );
