@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import { useRouter } from "next/dist/client/router";
@@ -57,6 +58,9 @@ const SessionDetailView = (): JSX.Element => {
 
   return (
     <div className="bg-gray-900 text-white pt-32 h-screen ">
+      <Head>
+        <title>Poker Session | Planning Poker</title>
+      </Head>
       {session && (
         <div className={styles.sesssionGrid}>
           <StoryList

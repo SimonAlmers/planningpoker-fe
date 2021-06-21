@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
@@ -60,6 +61,9 @@ const ProjectDetailView = (): JSX.Element => {
 
   return (
     <div className="h-screen bg-gray-900 flex justify-center items-start pt-24 text-white">
+      <Head>
+        <title>{project?.title || "Project"} | Planning Poker</title>
+      </Head>
       {project && (
         <div className="w-full px-12 h-full max-h-full">
           <CreateStoryModal

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import APIKit from "helpers/APIKit";
 import RouteKit from "helpers/RouteKit";
@@ -53,6 +54,9 @@ const StoryDetailView = (): JSX.Element => {
 
   return (
     <div className="bg-gray-800 h-screen text-white pt-48 text-white flex justify-center">
+      <Head>
+        <title>{title || "Story"} | Planning Poker</title>
+      </Head>
       <form className="max-w-7xl w-full" onSubmit={handleSubmit}>
         <div className="flex justify-between">
           <Link

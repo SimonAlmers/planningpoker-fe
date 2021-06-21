@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import ProjectList from "./components/ProjectList";
 import CreateProjectForm from "./components/CreateProjectForm";
@@ -41,6 +42,9 @@ const ProjectListView = (): JSX.Element => {
   }, [searchTerm]);
   return (
     <div className="pt-48 bg-gray-900 h-screen flex justify-center text-white">
+      <Head>
+        <title>My Projects | Planning Poker</title>
+      </Head>
       <h1 className="sr-only">My Projects</h1>
       <Modal
         isOpen={displayCreateProjectModal}
@@ -50,7 +54,6 @@ const ProjectListView = (): JSX.Element => {
       >
         <CreateProjectForm projectCreateCallback={projectCreateCallback} />
       </Modal>
-
       {!isLoading && searchTerm.length === 0 && projects.length === 0 ? (
         <ProjectEmptyState
           isSearch={searchTerm.length > 0}

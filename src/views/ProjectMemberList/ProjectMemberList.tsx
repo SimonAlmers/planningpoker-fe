@@ -1,4 +1,5 @@
 import APIKit from "helpers/APIKit";
+import Head from "next/head";
 import RouteKit from "helpers/RouteKit";
 import { useRouter } from "next/dist/client/router";
 import React, { useContext, useEffect, useState } from "react";
@@ -116,6 +117,9 @@ const ProjectMemberListView = (): JSX.Element => {
 
   return (
     <div className="pt-48 bg-gray-900 h-screen flex flex-wrap justify-center items-start text-white">
+      <Head>
+        <title>Project Members | Planning Poker</title>
+      </Head>
       <InviteModal
         isOpen={displayInviteModal}
         toggle={toggleInviteModal}

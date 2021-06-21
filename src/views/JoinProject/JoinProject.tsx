@@ -1,3 +1,4 @@
+import Head from "next/head";
 import EmptyState from "components/EmptyState";
 import APIKit from "helpers/APIKit";
 
@@ -23,6 +24,9 @@ const JoinProjectView = (): JSX.Element => {
 
   return (
     <div className="pt-32 bg-gray-900 h-screen flex justify-center text-white">
+      <Head>
+        <title>Join Project | Planning Poker</title>
+      </Head>
       <div className="max-w-7xl w-full">
         <EmptyState
           img="/img/illustrations/project_join.svg"
