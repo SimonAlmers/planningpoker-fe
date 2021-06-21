@@ -28,6 +28,8 @@ touch .env
 
 Add env variables to `.env` file:
 
+To obtain the correct values for the .env file please follow this guide: [Firebase Realtime Database Setup](./docs/FIREBASE_SETUP.md)
+
 ```bash
 API_BASE_URL=http://localhost:8000
 FIREBASE_API_KEY=***
@@ -50,3 +52,7 @@ Run migrations on your local database
 ```bash
 npm run dev
 ```
+
+### Make sure to start the Django Dev Server before testing the frontend
+
+### Now you should be able to visit the app at the location specified by int the terminal, most likely: [http://localhost:3000/](http://localhost:3000/)

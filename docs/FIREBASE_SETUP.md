@@ -98,3 +98,5 @@ FIREBASE_DATABASE_URL=https://planningpoker-public-default-rtdb.europe-west1.fir
 `planning-poker-base.adminsdk.json`
 
 # Now we should be good to go!
+
+[Back To README](/README.md)
