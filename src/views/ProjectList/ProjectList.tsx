@@ -41,7 +41,7 @@ const ProjectListView = (): JSX.Element => {
     fetchProjectList();
   }, [searchTerm]);
   return (
-    <div className="pt-48 bg-gray-900 h-screen flex justify-center text-white">
+    <div className="pt-48 px-4 bg-gray-900 h-screen flex justify-center text-white">
       <Head>
         <title>My Projects | Planning Poker</title>
       </Head>

@@ -8,7 +8,7 @@ const HeroBanner = (): JSX.Element => (
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={styles.heroTitle}
+      className={`${styles.heroTitle} text-center text-8xl md:text-9xl`}
     >
       Planning Poker
     </motion.h1>
