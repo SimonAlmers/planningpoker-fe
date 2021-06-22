@@ -5,6 +5,7 @@ import APIKit from "helpers/APIKit";
 import type { AppProps } from "next/app";
 import { createContext, useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
+import "assets/main.scss";
 import { COOKIES } from "helpers/Constants";
 import handleError from "helpers/ErrorKit";
 

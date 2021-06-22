@@ -78,7 +78,7 @@ const RealTimeKit = {
     chat: (projectId: string, storyId: string) => {
       const ref = firebase
         .database()
-        .ref(`/projects/${projectId}/story/${storyId}/comments`);
+        .ref(`/projects/${projectId}/stories/${storyId}/comments`);
       return eventListners(ref);
     },
   },

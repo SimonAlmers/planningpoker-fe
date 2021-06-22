@@ -1,6 +1,12 @@
-type SnackBarMessage = {
+type NotificationMessage = {
+  context: string;
+  createdAt: string;
   id: string;
-  text: string;
-  title: string;
-  isError: boolean;
+  kind: number;
+  message: string;
+  readAt: string;
+  sender: string;
+  updatedAt: string;
+  sessionId?: string;
+  projectId?: string;
 };

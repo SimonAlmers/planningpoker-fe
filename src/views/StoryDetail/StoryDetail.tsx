@@ -6,6 +6,7 @@ import { useRouter } from "next/dist/client/router";
 import BreadCrumbs from "components/BreadCrumbs";
 import handleError from "helpers/ErrorKit";
 import { useProjectTitle } from "helpers/hooks";
+import StoryChat from "./components/StoryChat";
 
 const StoryDetailView = (): JSX.Element => {
   const router = useRouter();
@@ -58,60 +59,63 @@ const StoryDetailView = (): JSX.Element => {
       <Head>
         <title>{title || "Story"} | Planning Poker</title>
       </Head>
-      <form className="max-w-7xl w-full" onSubmit={handleSubmit}>
-        <div className="flex justify-between">
-          <BreadCrumbs
-            links={[
-              { label: "Projects", url: RouteKit.project.list },
-              {
-                label: projectTitle,
-                url: RouteKit.project.detail(projectId),
-              },
-              { label: title, url: { href: "", as: "" } },
-            ]}
-          />
+      <div className="max-w-7xl w-full">
+        <form onSubmit={handleSubmit}>
+          <div className="flex justify-between">
+            <BreadCrumbs
+              links={[
+                { label: "Projects", url: RouteKit.project.list },
+                {
+                  label: projectTitle,
+                  url: RouteKit.project.detail(projectId),
+                },
+                { label: title, url: { href: "", as: "" } },
+              ]}
+            />
 
-          <div>
-            <button
-              onClick={deleteStory}
-              className="btn font-bold bg-red-700 mr-2"
-            >
-              Delete
-            </button>
-            <button type="submit" className="btn font-bold bg-green-500">
-              Save
-            </button>
+            <div>
+              <button
+                onClick={deleteStory}
+                className="btn font-bold bg-red-700 mr-2"
+              >
+                Delete
+              </button>
+              <button type="submit" className="btn font-bold bg-green-500">
+                Save
+              </button>
+            </div>
           </div>
-        </div>
-        <fieldset className="mb-3 pt-12">
-          <label className="block font-bold" htmlFor="title">
-            Title
-          </label>
-          <input
-            className="w-full rounded-sm bg-gray-700 py-2 px-3"
-            type="text"
-            id="title"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Give the story a descriptive title"
-          />
-        </fieldset>
-        <fieldset className="mb-3">
-          <label className="block font-bold" htmlFor="description">
-            Description
-          </label>
-          <textarea
-            className="w-full rounded-sm bg-gray-700 py-2 px-3"
-            id="description"
-            name="description"
-            value={description}
-            rows={5}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Add a description"
-          />
-        </fieldset>
-      </form>
+          <fieldset className="mb-3 pt-12">
+            <label className="block font-bold" htmlFor="title">
+              Title
+            </label>
+            <input
+              className="w-full rounded-sm bg-gray-700 py-2 px-3"
+              type="text"
+              id="title"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Give the story a descriptive title"
+            />
+          </fieldset>
+          <fieldset className="mb-3">
+            <label className="block font-bold" htmlFor="description">
+              Description
+            </label>
+            <textarea
+              className="w-full rounded-sm bg-gray-700 py-2 px-3"
+              id="description"
+              name="description"
+              value={description}
+              rows={5}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Add a description"
+            />
+          </fieldset>
+        </form>
+        <StoryChat projectId={projectId} storyId={storyId} />
+      </div>
     </div>
   );
 };
