@@ -20,6 +20,16 @@ const StoryEndpoints = {
     const url = `/api/v1/projects/${projectId}/stories/${storyId}/`;
     return HTTPKit.delete(url, {});
   },
+  comments: {
+    postComment: (
+      projectId: string,
+      storyId: string,
+      payload: { text: string }
+    ) => {
+      const url = `/api/v1/projects/${projectId}/stories/${storyId}/comments/`;
+      return HTTPKit.post(url, payload);
+    },
+  },
 };
 
 export default StoryEndpoints;
