@@ -36,7 +36,11 @@ const StoryContainer = ({
             as={storyDetailRoute.as}
           >
             <a>
-              <StoryListItem story={story} highlighted={false} />
+              <StoryListItem
+                story={story}
+                highlighted={false}
+                className="mb-2"
+              />
             </a>
           </Link>
         );

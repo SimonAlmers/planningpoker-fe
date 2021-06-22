@@ -26,13 +26,15 @@ const StoryList = ({
   };
 
   return (
-    <div className={`${styles.storyContainer} bg-gray-800 p-3`}>
+    <div
+      className={`${styles.storyContainer} bg-gray-800 p-3 flex flex-column`}
+    >
       <h2 className="font-bold mb-3">Stories</h2>
-      <ul>
+      <ul className="overflow-auto pr-2">
         {stories.map((story) => (
           <button
             key={story.id}
-            className="w-full text-left"
+            className="w-full text-left rounded-sm focus:outline-none border-2 border-transparent focus:bg-green-600 focus:border-green-600  mb-2"
             onClick={() => focusOnStory(story.id)}
           >
             <StoryListItem
